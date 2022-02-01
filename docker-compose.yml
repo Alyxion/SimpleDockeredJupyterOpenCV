@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  jupyteropencv:
+    image: "yourcr.azurecr.io/services/web/jupyteropencv"
+    build: jupyteropencv
+    ports:
+      - 5005:5005
+    container_name: jupyteropencv
+    restart: unless-stopped
+    depends_on:
+      - redis
+    # TODO Remove this volume section and copy the source directly into container once ready to ship.
+    # TODO Also see webservice/Dockerfile
+    volumes:
+      - ${PROJECT_DIR}:/projects
+    networks:
+      - yournet
+    deploy:
+      replicas: 1
+networks:
+  yournet:
+      name: yournet
