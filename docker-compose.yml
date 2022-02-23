@@ -7,8 +7,6 @@ services:
       - 5005:5005
     container_name: jupyteropencv
     restart: unless-stopped
-    depends_on:
-      - redis
     # TODO Remove this volume section and copy the source directly into container once ready to ship.
     # TODO Also see webservice/Dockerfile
     volumes:
